@@ -4,7 +4,7 @@ set(HUSKARUI_VERSION 0.4.0.0)
 
 message(STATUS "Configuring HuskarUI.Basic Version: ${HUSKARUI_VERSION}")
 
-project(HuskarUI.Basic VERSION ${HUSKARUI_VERSION} LANGUAGES CXX)
+project(HuskarUIBasic VERSION ${HUSKARUI_VERSION} LANGUAGES CXX)
 
 #Add HuskarUIHelper
 include(${CMAKE_CURRENT_LIST_DIR}/../.cmake/HuskarUIHelper.cmake)
@@ -22,14 +22,6 @@ set(HUSKARUI_PLUGIN_OUTPUT_DIRECTORY "" CACHE PATH "HuskarUI plugin output dir."
 
 if(NOT HUSKARUI_HEADER_OUTPUT_DIRECTORY)
     set(HUSKARUI_HEADER_OUTPUT_DIRECTORY ${Qt6_DIR}/../../../include/HuskarUI)
-endif()
-
-if(NOT HUSKARUI_PLUGIN_OUTPUT_DIRECTORY)
-    set(HUSKARUI_LIBRARY_OUTPUT_DIRECTORY ${Qt6_DIR}/../../../)
-    set(HUSKARUI_PLUGIN_OUTPUT_DIRECTORY ${Qt6_DIR}/../../../qml/HuskarUI/Basic)
-    if(BUILD_HUSKARUI_STATIC_LIBRARY)
-        set(HUSKARUI_PLUGIN_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/HuskarUI/Basic)
-    endif()
 endif()
 
 if(BUILD_HUSKARUI_STATIC_LIBRARY)
@@ -64,11 +56,6 @@ qt_add_qml_module(${PROJECT_NAME}
     URI "HuskarUI.Basic"
     VERSION 1.0
     DESIGNER_SUPPORTED
-    PLUGIN_TARGET ${PLUGIN_NAME}
-    #NO_GENERATE_PLUGIN_SOURCE
-    RESOURCE_PREFIX "/"
-    TYPEINFO "plugins.qmltypes"
-    OUTPUT_DIRECTORY ${HUSKARUI_PLUGIN_OUTPUT_DIRECTORY}
     QML_FILES
         imports/HusButton.qml
         imports/HusIconButton.qml
